@@ -80,7 +80,7 @@ def search(img1,books):
     for book in books:
         terminate=book['image'].index('?type')   
         original=io.imread(book['image'][:terminate])
-        original=cv2.resize(original,dsize=(420,320))
+        original=cv2.resize(original,dsize=(420,440))
         img2=io.imread(book['image'][:terminate])
         img2=cv2.resize(img2,dsize=(img1.shape[1],img1.shape[0]))
 
