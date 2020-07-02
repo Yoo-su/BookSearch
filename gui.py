@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from PyQt5 import QtWidgets
 from PyQt5 import QtGui
 from PyQt5 import QtCore
@@ -21,22 +22,24 @@ def openImgWin(img,bookInfo):
     labela=QtWidgets.QLabel(win)
     labelb=QtWidgets.QLabel(win)
     
-    labelA.setText('제목: '+bookInfo['title'])
+    labelA.setText('<b>제목</b>: '+bookInfo['title'])
     labelA.setFont(QtGui.QFont("나눔고딕",12))
     
-    labelB.setText('저자명: '+bookInfo['author'])
+    labelB.setText('<b>저자명</b>: '+bookInfo['author'])
     labelB.setFont(QtGui.QFont("나눔고딕",12))
     
-    labelC.setText('정가: '+bookInfo['price']+' / 할인가: '+bookInfo['discount'])
+    labelC.setText('<b>정가</b>: '+bookInfo['price']+' / <b>할인가</b>: '+bookInfo['discount'])
     labelC.setFont(QtGui.QFont("나눔고딕",12))
     
-    labela.setText('출판사: '+bookInfo['publisher'])
+    pub=bookInfo['publisher'].replace('<b>','').replace('</b>','')
+    labela.setText('<b>출판사</b>: '+pub)
     labela.setFont(QtGui.QFont("나눔고딕",12))
     
-    labelb.setText('출간일: '+bookInfo['pubdate'])
+    labelb.setText('<b>출간일</b>: '+bookInfo['pubdate'])
     labelb.setFont(QtGui.QFont("나눔고딕",12))
 
-    labelD.append(bookInfo['description'])
+    desc=bookInfo['description'].replace('&#x0D;','').replace('<b>','').replace('</b>','')
+    labelD.append(desc)
     labelD.setFont(QtGui.QFont("나눔고딕",12))
     
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) 
@@ -57,9 +60,9 @@ def openImgWin(img,bookInfo):
 
     win.setLayout(vbox)
     
-
     win.show()
-
     sys.exit(app.exec_())
+    
+    
     
 
